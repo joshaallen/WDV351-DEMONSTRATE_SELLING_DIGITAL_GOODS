@@ -1,0 +1,79 @@
+//resets
+
+*, ::after, ::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  font-size: 62.5%;
+}
+body {
+  min-height: 100%;
+  line-height: 1.6;
+  width: 100%;
+}
+a {
+  text-decoration: none;
+}
+ul{
+  list-style: none;
+}
+//layout
+
+div.container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+div.container header {
+  height: 25%;
+  border-bottom: 2px black solid;
+  max-height: 10rem;
+}
+.container-main {
+  width: 85%;
+
+  margin: 0 auto;
+}
+
+.container-main h1 {
+  margin-bottom: 4rem;
+}
+.container-item {
+  min-width: 35rem;
+  max-width: 45rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem 1.5rem;
+  margin: 0 auto;
+  
+}
+
+.container-item .container-item-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.container-item .container-item-info .container-item-price {
+  margin-bottom: 4rem;
+}
+
+.container-item-buyNowButton {
+  display: flex;
+  width: 23rem;
+  justify-content: center;
+}
+
+div.container footer {
+  height: 10%;
+  max-height: 7.6rem;
+  border-top: 2px black solid;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}

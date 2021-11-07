@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="This is a webpage that will display a product that will be sold by way of ecommerce through the PayPal processing layer">
+  <meta name="keywords" content="PayPal, BuyNow Button, Ecommerce">
+  <meta name="author" content="Joshua Allen">
+  <link rel="stylesheet" href="products.css">
+  <title>Products Page</title>
+  <style>
+    div.image {
+      height: 290px;
+      width: 230px;
+      background-color: aqua;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>WDV351 Virtual Store</header>
+    <div class="container-main">
+      <h1>Products Page</h1>
+      <main>
+        <div class="container-item">
+          <div class="contianer-item-image">
+            <div class="image">
+              Hello
+            </div>
+          </div>
+          <div class="container-item-info">
+            <div class="container-item-price">
+              <p>&dollar;59&period;99</p>
+            </div>
+            <div class="container-item-description">
+              <p>Lorem ipsum dolor sit amet consectetur.
+              </p>
+            </div>
+          </div>
+          <div class="container-item-buyNowButton">
+            <div id="smart-button-container">
+              <div style="text-align: center;">
+                <div id="paypal-button-container"></div>
+              </div>
+            </div>
+            <script
+              src="https://www.paypal.com/sdk/js?client-id=sb&enable-funding=venmo&currency=USD&disable-funding=credit,card,venmo"
+              data-sdk-integration-source="button-factory"></script>
+            <script>
+              function initPayPalButton() {
+                paypal.Buttons({
+                  style: {
+                    shape: 'rect',
+                    color: 'gold',
+                    layout: 'vertical',
+                    label: 'paypal',
+
+                  },
+
+                  createOrder: function (data, actions) {
+                    return actions.order.create({
+                      purchase_units: [{ "description": "Classical Physics Textbook", "amount": { "currency_code": "USD", "value": 63.59, "breakdown": { "item_total": { "currency_code": "USD", "value": 59.99 }, "shipping": { "currency_code": "USD", "value": 0 }, "tax_total": { "currency_code": "USD", "value": 3.6 } } } }]
+                    });
+                  },
+
+                  onApprove: function (data, actions) {
+                    return actions.order.capture().then(function (orderData) {
+
+                      // Full available details
+                      console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+
+                      // Show a success message within this page, e.g.
+                      const element = document.getElementById('paypal-button-container');
+                      element.innerHTML = '';
+                      element.innerHTML = '<h3>Thank you for your payment!</h3>';
+
+                      // Or go to another URL:  actions.redirect('thank_you.html');
+
+                    });
+                  },
+
+                  onError: function (err) {
+                    console.log(err);
+                  }
+                }).render('#paypal-button-container');
+              }
+              initPayPalButton();
+            </script>
+          </div>
+          <!--end of payPal buyNowbutton container-->
+        </div>
+        <!--end of item container-->
+      </main>
+    </div>
+    <!--end of container-->
+    <footer>WDV351 Virtual Store</footer>
+  </div>
+</body>
+
+</html>
